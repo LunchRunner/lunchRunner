@@ -1,5 +1,5 @@
-// export default function() {
-// 	return (
-// 		<div>test</div>
-// 	)
-// }
+export default function() {
+	return (
+		<div>test</div>
+	)
+}
