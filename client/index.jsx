@@ -5,7 +5,7 @@ import Login from './pages/login'
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { store } from './redux/store'
 import { Provider } from 'react-redux';
-
+import Page from './pages/page';
 
 const router = createBrowserRouter([
     {
@@ -23,6 +23,10 @@ const router = createBrowserRouter([
         path: "login",
         element: <Login />
     },
+    {
+      path: "home",
+      element: <Page />
+    }
 
 ]);
 
