@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const webpack = require("webpack");
 module.exports = {
   mode: "development",
-  entry: path.join(__dirname, "client", "index.js"),
+  entry: path.join(__dirname, "client", "index.jsx"),
   output: {
     path: path.join(__dirname, "dist"),
     filename: "bundle.js",
@@ -24,6 +24,7 @@ module.exports = {
     ],
   },
   devServer: {
+    historyApiFallback: true,
     static: {
       directory: path.join(__dirname, "public"),
       publicPath: "/",
