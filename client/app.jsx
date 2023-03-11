@@ -5,7 +5,7 @@ export default function App() {
         <div>
             <h1>LUNCHRUNNING</h1>
             <Login/>
-            <a href={`/login`}>Your Name</a>
+            // <a href={`/login`}>Your Name</a>
         </div>
     )
 }
