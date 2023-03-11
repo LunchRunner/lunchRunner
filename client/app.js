@@ -5,7 +5,6 @@ export function App() {
         <div>
             <h1>LUNCHRUNNING</h1>
             <Login/>
-
         </div>
     )
 }
