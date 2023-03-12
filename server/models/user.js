@@ -1,12 +1,10 @@
 const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema({
-  username: String,
-  password: String,
-  name: {
-    firstName: String,
-    lastName: String,
-  },
+  username: { type: String, required: true },
+  password: { type: String, required: true },
+  firstName: { type: String, required: true },
+  lastName: { type: String, required: true },
   date_of_birth: {
     type: Date,
     validate: {
@@ -21,7 +19,7 @@ const userSchema = new mongoose.Schema({
   },
   email: {
     type: String,
-    require: true,
+    required: true,
   },
   img_url: String,
   posts: [
@@ -29,22 +27,25 @@ const userSchema = new mongoose.Schema({
       type: mongoose.Schema.Types.ObjectId,
       ref: "post",
       validate: {
-        validator: function (v) {
-          return new Promise((res, rej) => {
-            Post.findById(v, function (err, user) {
-              if (err || !user) {
-                resolve(false);
-              } else {
-                resolve(true);
-              }
-            });
-          });
+        validator: async function (v) {
+          try {
+            const res = await Post.findById(v);
+            res(false);
+          } catch (err) {
+            rej(true);
+          }
         },
       },
     },
   ],
 });
 
-const User = mongoose.model("user", userSchema);
+async function validatePostId(v) {
+  const res = await Post.find(v);
+  if (!res) {
+  }
+}
+
+const User = mongoose.model("User", userSchema);
 
 module.exports = User;
