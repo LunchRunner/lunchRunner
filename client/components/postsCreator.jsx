@@ -1,10 +1,10 @@
 export default function PostsCreator() {
     return (
         <div className="postBox">
-           <form>
-              <input type="text" name="wherePost"/>
-              <input type="text" name= "whenPost"/>
-              <input type="button" name="postButton"/>
+           <form className="post">
+              <input type="text" name="wherePost" placeholder="Where are you going?"/>
+              <input type="text" name= "whenPost" placeholder="What time?"/>
+              <button className="postButton">Post</button>
            </form>
         </div>
     )

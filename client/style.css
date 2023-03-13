@@ -1,0 +1,29 @@
+.posts-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.posts-container h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.postBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid black;
+    width: 200px;
+    height: 100px;
+}
+.postBox input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.postBox .postButton {
+    display: flex;
+    align-self: center;
+}
