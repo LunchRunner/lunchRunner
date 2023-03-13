@@ -18,12 +18,8 @@ usersRouter.post(
   }
 );
 
-usersRouter.get("/", (req, res) => {
-  res.status(200).json({ success: true });
-});
-
-usersRouter.post("/", (req, res) => {
-  res.status(200).json({ success: true });
-});
+usersRouter.post("/login", userController.login, (req, res, next) => {
+  res.status(200).json(res.locals.userId);
+})
 
 module.exports = usersRouter;
