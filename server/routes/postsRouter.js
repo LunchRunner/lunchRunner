@@ -1,14 +1,16 @@
 const express = require('express')
+const postController = require("../controllers/postController")
+
 const postsRouter = express.Router();
 
-postsRouter.get('/', (req, res) => {
-    console.log('testing posts get')
-    res.status(200).json({success: true});
+// handling get requests to /posts
+postsRouter.get('/', postController.getPosts, (req, res) => {
+    res.status(200).json(res.locals.posts); 
 })
 
-postsRouter.post('/', (req, res) => {
-    console.log('testing posts post')
-    res.status(200).json({success: true});
+// handling post requests to /posts
+postsRouter.post('/', postController.createPost, (req, res) => { 
+    res.status(200).json({success: true}); 
 })
 
 module.exports = postsRouter;
