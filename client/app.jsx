@@ -3,9 +3,9 @@ import Signup from "./pages/signup";
 import "./style.css" 
 export default function App() {
     return (
-        <div>
+        <div className="login-page">
             <h1>LunchRunner</h1>
-            <Login/>
+            <Login className="login"/>
             <a href={`/signup`}>Sign up now!</a>
         </div>
     )

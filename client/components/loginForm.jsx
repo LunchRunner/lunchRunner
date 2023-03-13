@@ -31,6 +31,7 @@ export default function LoginForm() {
         dispatch(getUser(form))
     }
     return (
+        <div class="formbox">
         <form onSubmit={handleSubmit}>
             <label>
                 Username:
@@ -42,5 +43,6 @@ export default function LoginForm() {
             </label>
             <input type="submit" value="Login"></input>
         </form>
+        </div>
     )
 }
