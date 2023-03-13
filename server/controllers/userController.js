@@ -1,17 +1,22 @@
 const User = require("../models/user");
 const createError = require("../createError");
 
+function mock20YrOld() {
+  return new Date(new Date().setFullYear(new Date().getFullYear() - 20));
+}
+
 const userController = {};
 
 userController.createUser = async (req, res, next) => {
+  const { username, password, firstName, lastName, date_of_birth, email } = req.body;
   try {
     const user = await User.create({
-      username: "bc0",
-      password: "password",
-      firstName: "ben",
-      lastName: "cai",
-      date_of_birth: new Date(new Date().setFullYear(new Date().getFullYear() - 20)),
-      email: "ben@mail.com",
+      username,
+      password,
+      firstName,
+      lastName,
+      date_of_birth,
+      email,
       img_url: "https://cdn-icons-png.flaticon.com/512/456/456212.png",
       posts: [],
     });
