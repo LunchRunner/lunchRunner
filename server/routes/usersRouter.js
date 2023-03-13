@@ -19,7 +19,7 @@ usersRouter.post(
 );
 
 usersRouter.post("/login", userController.login, (req, res, next) => {
-  res.status(200).json(res.locals.userId);
+  res.status(200).json(res.locals.username);
 })
 
 module.exports = usersRouter;

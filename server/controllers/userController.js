@@ -9,7 +9,7 @@ const userController = {};
 
 userController.createUser = async (req, res, next) => {
   const { username, password, firstName, lastName, date_of_birth, email } = req.body;
-  console.log("reqbody", req.body)
+  console.log("reqbody", req.body);
   try {
     const user = await User.create({
       username,
@@ -45,7 +45,7 @@ userController.login = async(req, res, next) => {
 
     User.find({username: username, password: password})
       .then(data => {
-        res.locals.userId = data[0]._id; 
+        res.locals.username = data[0].username; 
         next();
       })
 
