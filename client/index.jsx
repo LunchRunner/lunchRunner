@@ -2,6 +2,7 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './app';
 import Login from './pages/login'
+import Signup from './pages/signup';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { store } from './redux/store'
 import { Provider } from 'react-redux';
@@ -20,8 +21,8 @@ const router = createBrowserRouter([
         // ]
     },
     {
-        path: "login",
-        element: <Login />
+        path: "signup",
+        element: <Signup />
     },
     {
       path: "home",
