@@ -14,7 +14,7 @@ export default function loginForm() {
     }
     const handleSubmit = async (e) => {
         e.preventDefault()
-        await dispatch(getUser(form))
+        dispatch(getUser(form))
         navigate('/home')
     }
     return (
