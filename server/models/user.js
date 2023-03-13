@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Post = require("./post");
 
 const userSchema = new mongoose.Schema({
   username: { type: String, required: true },
@@ -8,11 +9,7 @@ const userSchema = new mongoose.Schema({
   date_of_birth: {
     type: Date,
     validate: {
-      validator: function (v) {
-        const ageInMs = Date.now() - v.getTime();
-        const ageInYears = ageInMs / (1000 * 3600 * 24 * 365.25);
-        return ageInYears >= 18;
-      },
+      validator: validateUserAge,
       message: (props) => "User must be at least 18 years old",
     },
     required: [true, "Date of birth is required"],
@@ -22,27 +19,27 @@ const userSchema = new mongoose.Schema({
     required: true,
   },
   img_url: String,
-  posts: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "post",
-      validate: {
-        validator: async function (v) {
-          try {
-            const res = await Post.findById(v);
-            res(false);
-          } catch (err) {
-            rej(true);
-          }
-        },
-      },
+  posts: {
+    type: [mongoose.Schema.Types.ObjectId],
+    ref: "post",
+    validate: {
+      validator: validatePostId,
     },
-  ],
+  },
 });
+
+function validateUserAge(v) {
+  const ageInMs = Date.now() - v.getTime();
+  const ageInYears = ageInMs / (1000 * 3600 * 24 * 365.25);
+  return ageInYears >= 18;
+}
 
 async function validatePostId(v) {
   const res = await Post.find(v);
   if (!res) {
+    return false;
+  } else {
+    return true;
   }
 }
 
