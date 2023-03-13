@@ -9,7 +9,7 @@ const userController = {};
 
 userController.createUser = async (req, res, next) => {
   const { username, password, firstName, lastName, date_of_birth, email } = req.body;
-  console.log("reqbody", req.body)
+  console.log("reqbody", req.body);
   try {
     const user = await User.create({
       username,

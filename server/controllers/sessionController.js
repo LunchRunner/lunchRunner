@@ -11,6 +11,7 @@ class SessionController {
       });
       console.log("sessionid", response);
       res.locals.session = response;
+      res.cookie("sessionId", response._id, { maxAge: 86400000 });
       next();
     } catch (err) {
       next({ message: err });
