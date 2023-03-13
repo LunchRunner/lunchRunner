@@ -1,15 +1,18 @@
 import { useDispatch } from "react-redux"
 import { createNewUser } from "../redux/userSlice"
 import { useState } from "react"
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
+
+// inside your component
 export default function SignupForm(props) {
+    const navigate = useNavigate()
     const [form, setForm] = useState({
-        username: "st",
-        password: "pa",
-        firstName: "fi",
-        lastName: "LA",
+        username: "",
+        password: "",
+        firstName: "",
+        lastName: "",
         date_of_birth: new Date(new Date().setFullYear(new Date().getFullYear() - 20)),
-        email: "ds@mail.com",
+        email: "",
     });
     const onChange = (e) => {
         setForm((prev) => ({
@@ -18,10 +21,12 @@ export default function SignupForm(props) {
         }))
     }
     const dispatch = useDispatch()
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        dispatch(createNewUser(form))
-        // useNavigate("home")
+        const test = dispatch(createNewUser(form)).then(() => {
+            navigate('/home')
+        })
+        
     }
     return (
         <form onSubmit={handleSubmit}>
