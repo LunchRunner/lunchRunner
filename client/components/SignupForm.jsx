@@ -1,11 +1,20 @@
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { createNewUser } from "../redux/userSlice"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useNavigate } from 'react-router-dom';
 
 // inside your component
 export default function SignupForm(props) {
+    const {status} = useSelector((state) => {
+        return state.user
+    })
     const navigate = useNavigate()
+    useEffect(() => {
+        console.log(status)
+        if(status == 'succeeded') {
+            navigate('/home')
+        }
+    }, [status])
     const [form, setForm] = useState({
         username: "",
         password: "",
@@ -23,9 +32,7 @@ export default function SignupForm(props) {
     const dispatch = useDispatch()
     const handleSubmit = async (e) => {
         e.preventDefault()
-        const test = dispatch(createNewUser(form)).then(() => {
-            navigate('/home')
-        })
+        dispatch(createNewUser(form))
         
     }
     return (

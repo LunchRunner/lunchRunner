@@ -24,8 +24,14 @@ const getUserSlice = createSlice({
       // standard reducer logic, with auto-generated action types per reducer
     },
     extraReducers: (builder) => {
+        
       // Add reducers for additional action types here, and handle loading state as needed
       builder.addCase(getUser.fulfilled, (state, action) => {
+        if(action.payload.err) { 
+            state.status = 'failed'
+          }else {
+            state.status = 'succeeded'
+          }
         // Add user to the state array
         state.userId = action.payload['_id']
         state.username = action.payload.username;
