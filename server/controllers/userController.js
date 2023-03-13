@@ -35,7 +35,14 @@ userController.createUser = async (req, res, next) => {
 userController.login = async(req, res, next) => {
   try {
 
-    // loggin in lol
+    const username = req.body.username;
+    const password = req.body.password;
+
+    User.find({username: username, password: password})
+      .then(data => {
+        res.locals.userId = data[0]._id; 
+        next();
+      })
 
   } catch (err) {
     const errorObj = createError({
