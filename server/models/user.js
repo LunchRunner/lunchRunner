@@ -9,7 +9,7 @@ const userSchema = new mongoose.Schema({
   date_of_birth: {
     type: Date,
     validate: {
-      validator: validateUserAge,
+      validator: (v) => validateUserAge(v),
       message: (props) => "User must be at least 18 years old",
     },
     required: [true, "Date of birth is required"],
@@ -22,9 +22,9 @@ const userSchema = new mongoose.Schema({
   posts: {
     type: [mongoose.Schema.Types.ObjectId],
     ref: "post",
-    validate: {
-      validator: validatePostId,
-    },
+    // validate: {
+    //   validator: v => validatePostId(v),
+    // },
   },
 });
 
