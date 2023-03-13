@@ -1,11 +1,17 @@
 const express = require("express");
 const userController = require("../controllers/userController");
+const sessionController = require("../controllers/sessionController");
 
 const usersRouter = express.Router();
 
-usersRouter.post("/createUser", userController.createUser, (req, res, next) => {
-  res.status(200).json(res.locals.user);
-});
+usersRouter.post(
+  "/createUser",
+  userController.createUser,
+  sessionController.createSession,
+  (req, res, next) => {
+    res.status(200).json(res.locals.user);
+  }
+);
 
 usersRouter.get("/", (req, res) => {
   console.log("testing users get");
