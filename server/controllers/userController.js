@@ -5,7 +5,7 @@ function mock20YrOld() {
   return new Date(new Date().setFullYear(new Date().getFullYear() - 20));
 }
 
-const userController = {};
+const userController = {}; 
 
 userController.createUser = async (req, res, next) => {
   const { username, password, firstName, lastName, date_of_birth, email } = req.body;
@@ -31,5 +31,20 @@ userController.createUser = async (req, res, next) => {
     next({ errorObj });
   }
 };
+
+userController.login = async(req, res, next) => {
+  try {
+
+    // loggin in lol
+
+  } catch (err) {
+    const errorObj = createError({
+      log: err,
+      status: 500,
+      message: { err: "Problem logging in" },
+    });
+    next({ errorObj });
+  }
+}
 
 module.exports = userController;
