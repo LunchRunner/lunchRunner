@@ -17,12 +17,12 @@ postController.createPost = async (req, res, next) => {
     res.locals.post = post;
     next();
   } catch (err) {
-    const errorObj = createError();
-    next({
+    const errorObj = createError({
       log: err,
       status: 500,
-      message: { err },
+      message: { err: "Problem in createPost middleware" },
     });
+    next({ errorObj });
   }
 };
 

@@ -4,9 +4,9 @@ import "./style.css"
 export default function App() {
     return (
         <div>
-            <h1>LUNCHRUNNING</h1>
+            <h1>LunchRunner</h1>
             <Login/>
-            // <a href={`/signup`}>Your Name</a>
+            <a href={`/signup`}>Sign up now!</a>
         </div>
     )
 }
