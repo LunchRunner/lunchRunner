@@ -45,7 +45,7 @@ userController.login = async(req, res, next) => {
 
     User.find({username: username, password: password})
       .then(data => {
-        res.locals.userId = data[0]._id; 
+        res.locals.username = data[0].username; 
         next();
       })
 
