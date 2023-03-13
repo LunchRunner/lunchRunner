@@ -5,7 +5,7 @@ dotenv.config();
 
 // require in routes:
 const usersRouter = require("./routes/usersRouter");
-// const postsRouter = require("./routes/postsRouter");
+const postsRouter = require("./routes/postsRouter");
 const createError = require("./createError");
 
 const mongoose = require("mongoose");
@@ -24,7 +24,7 @@ app.use(express.static(path.resolve(__dirname, "../public")));
 
 // handle requests to users and posts
 app.use("/users", usersRouter);
-// app.use("/posts", postsRouter);
+app.use("/posts", postsRouter);
 
 // catch-all route handler for any requests to an unknown route
 app.use((req, res) => res.status(404).send("404: This page is out to lunch"));
@@ -36,6 +36,7 @@ app.use((err, req, res, next) => {
     status: 500,
     err: "An error occurred",
   });
+  console.log(err);
   const errorObj = Object.assign({}, defaultErr, err);
   console.log(errorObj.log); // <-- for devs (keep)
   return res.status(errorObj.status).json(errorObj.message); // <-- for users (would show in postman)
