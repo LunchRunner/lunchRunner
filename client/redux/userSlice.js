@@ -1,5 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-const createNewUser = createAsyncThunk(
+const initialState = {
+    entities: [],
+}
+export const createNewUser = createAsyncThunk(
     'users/createNewUser', 
     async (data) => {
         const response = await fetch("https://localhost:3000/users", {
@@ -26,3 +29,5 @@ const usersSlice = createSlice({
       })
     },
   })
+//   export {} = usersSlice.actions
+  export default usersSlice.reducers;

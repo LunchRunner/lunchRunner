@@ -30,7 +30,8 @@ module.exports = {
       publicPath: "/",
     },
     proxy: {
-      "/api": "http://localhost:3000",
+      "/users": "http://localhost:3000",
+      "/posts": "http://localhost:3000",
     },
   },
   resolve: {
