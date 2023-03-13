@@ -1,17 +1,11 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 const initialState = {
-    username: "",
-    password: "",
-    firstName: "",
-    lastName: "",
-    date_of_birth: "",
-    email: "",
+    entities: [],
 }
 export const createNewUser = createAsyncThunk(
     'users/createNewUser', 
     async (data) => {
-        console.log(data)
-        const response = await fetch("https://localhost:3000/users", {
+        const response = await fetch("https://localhost:3000/createUser", {
             method: "POST", // or 'PUT'
             headers: {
               "Content-Type": "application/json",
@@ -31,7 +25,7 @@ const usersSlice = createSlice({
       // Add reducers for additional action types here, and handle loading state as needed
       builder.addCase(createNewUser.fulfilled, (state, response) => {
         // Add user to the state array
-        
+        state.entities.push(response)
       })
     },
   })
