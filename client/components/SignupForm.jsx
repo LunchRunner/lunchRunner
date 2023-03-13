@@ -10,18 +10,17 @@ export default function SignupForm(props) {
     })
     const navigate = useNavigate()
     useEffect(() => {
-        console.log(status)
         if(status == 'succeeded') {
             navigate('/home')
         }
     }, [status])
     const [form, setForm] = useState({
-        username: "",
-        password: "",
-        firstName: "",
-        lastName: "",
+        username: "a",
+        password: "b",
+        firstName: "c",
+        lastName: "d",
         date_of_birth: new Date(new Date().setFullYear(new Date().getFullYear() - 20)),
-        email: "",
+        email: "a@a.com",
     });
     const onChange = (e) => {
         setForm((prev) => ({

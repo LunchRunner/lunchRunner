@@ -5,7 +5,6 @@ const initialState = {
     lastName: "",
     userId: "",
     status:"idle", 
-    
 }
 export const createNewUser = createAsyncThunk(
     'users/createNewUser', 
@@ -32,18 +31,20 @@ const usersSlice = createSlice({
     extraReducers: (builder) => {
       // Add reducers for additional action types here, and handle loading state as needed
       builder.addCase(createNewUser.fulfilled, (state, action) => {
-        // Add user to the state array
-        console.log('action', action)
         if(action.payload.err) { 
           state.status = 'failed'
         }else {
           state.status = 'succeeded'
+          state.userId = action.payload.user['_id']
+          state.username = action.payload.user.username;
+          state.firstName = action.payload.user.firstName;
+          state.lastName = action.payload.user.lastName 
         }
-        state.userId = action.payload['_id']
-        state.username = action.payload.username;
-        state.firstName = action.payload.firstName;
-        state.lastName = action.payload.lastName      
       })
+      // builder.addCase(createNewUser.fulfilled, (state, action) => {
+      //   console.log('builder', state, action.payload)
+      //   state.userId = action.payload.user.username
+      // })
     },
   })
   export const {} = usersSlice.actions;
