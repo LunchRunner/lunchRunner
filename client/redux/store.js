@@ -6,7 +6,7 @@ import getUserReducer from "./getUserSlice"
 export const store = configureStore({
 	reducer: {
 		post: postReducer,
-		user: userReducer,
+		users: userReducer,
 		getUser: getUserReducer,
 	},
 })
