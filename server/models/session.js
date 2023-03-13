@@ -2,13 +2,13 @@ const mongoose = require("mongoose");
 
 const sessionSchema = new mongoose.Schema({
   userId: {
-    type: Object.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: "User",
     required: true,
   },
   loginTime: {
     type: Date,
-    default: Date.now,
+    default: () => Date.now,
     required: true,
   },
   logoutTime: {
