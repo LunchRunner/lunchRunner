@@ -8,6 +8,7 @@ const postSchema = new mongoose.Schema(
   {
     placeId: {
       type: mongoose.Schema.Types.ObjectId,
+      ref: "Place",
     },
     expirationTime: Date,
     owner: {
