@@ -7,12 +7,14 @@ const timeStamps = {
 const postSchema = new mongoose.Schema(
   {
     placeId: String,
-    // {
+    // placeId: {
     //   type: mongoose.Schema.Types.ObjectId,
+    //   ref: "Place",
     // },
-    expirationTime: String,
+    // expirationTime: String,
+    expirationTime: Date,
     owner: String,
-    // {
+    // owner: {
     //   type: mongoose.Schema.Types.ObjectId,
     //   ref: "User",
     // },
