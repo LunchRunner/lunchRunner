@@ -1,19 +1,21 @@
 import { useDispatch, useSelector } from "react-redux"
-import { getUser } from "../redux/getUserSlice";
+import { getUser } from "../redux/userSlice";
 import { useState, useEffect } from "react"
 import { useNavigate } from 'react-router-dom';
 
 export default function LoginForm() {
     const dispatch = useDispatch()
-    const {status} = useSelector((state) => {
-        return state.getUser
+    const {isLoggedIn} = useSelector((state) => {
+        console.log(state.user)
+        return state.user
     })
     const navigate = useNavigate()
     useEffect(() => {
-        if(status == 'succeeded') {
+        console.log(isLoggedIn)
+        if(isLoggedIn) {
             navigate('/home')
         }
-    }, [status])
+    }, [isLoggedIn])
     const [form, setForm] = useState({
         username: "",
         password: "",
