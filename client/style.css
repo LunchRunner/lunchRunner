@@ -27,3 +27,15 @@
     display: flex;
     align-self: center;
 }
+.signup-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.signup-container form {
+    border: 2px solid blue;
+    border-radius: 2px;
+    display: flex;
+    flex-direction: column;
+}
