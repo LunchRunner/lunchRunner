@@ -9,14 +9,15 @@ const postSchema = new mongoose.Schema(
     placeId: String,
     // placeId: {
     //   type: mongoose.Schema.Types.ObjectId,
-    //   ref: "Place"
+    //   ref: "Place",
     // },
-    expirationTime: String,
-    // owner: String,
-    owner: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-    },
+    // expirationTime: String,
+    expirationTime: Date,
+    owner: String,
+    // owner: {
+    //   type: mongoose.Schema.Types.ObjectId,
+    //   ref: "User",
+    // },
     tags: [
       {
         timeOfTag: {

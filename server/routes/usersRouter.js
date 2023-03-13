@@ -9,7 +9,12 @@ usersRouter.post(
   userController.createUser,
   sessionController.createSession,
   (req, res, next) => {
-    res.status(200).json(res.locals.user);
+    console.log("resuser", res.locals.user);
+    const { user, session } = res.locals;
+    res.status(200).json({
+      user,
+      session,
+    });
   }
 );
 
