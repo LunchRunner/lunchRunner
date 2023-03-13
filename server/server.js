@@ -5,7 +5,7 @@ dotenv.config();
 
 // require in routes:
 const usersRouter = require("./routes/usersRouter");
-// const postsRouter = require("./routes/postsRouter");
+const postsRouter = require("./routes/postsRouter");
 const createError = require("./createError");
 
 const mongoose = require("mongoose");
@@ -36,6 +36,7 @@ app.use((err, req, res, next) => {
     status: 500,
     err: "An error occurred",
   });
+  console.log(err);
   const errorObj = Object.assign({}, defaultErr, err);
   console.log(errorObj.log); // <-- for devs (keep)
   return res.status(errorObj.status).json(errorObj.message); // <-- for users (would show in postman)
