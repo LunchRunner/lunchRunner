@@ -9,6 +9,7 @@ const userController = {};
 
 userController.createUser = async (req, res, next) => {
   const { username, password, firstName, lastName, date_of_birth, email } = req.body;
+  console.log("reqbody", req.body)
   try {
     const user = await User.create({
       username,
@@ -28,7 +29,11 @@ userController.createUser = async (req, res, next) => {
       status: 500,
       message: { err: "Problem creating a user" },
     });
-    next({ errorObj });
+    next({
+      log: err,
+      status: 500,
+      message: { err: "Problem creating a user" },
+    });
   }
 };
 

@@ -7,30 +7,25 @@ const initialState = {
     status:"idle", 
     
 }
-export const createNewUser = createAsyncThunk(
-    'users/createNewUser', 
-    async (data) => {
-      const response = await fetch("/users/createUser", {
-        method: "POST", // or 'PUT'
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      })
-      const json = await response.json()
-      // console.log('json', json)
-      return json;
-    }
+export const getUser = createAsyncThunk(
+  'users/getUser', 
+  async (data) => {
+    const response = await fetch("/users/getUser")
+    console.log(json)
+    const json = await response.json()
+    // console.log('json', json)
+    return json;
+  }
 )
-const usersSlice = createSlice({
-    name: 'users',
+const getUserSlice = createSlice({
+    name: 'user',
     initialState,
     reducers: {
       // standard reducer logic, with auto-generated action types per reducer
     },
     extraReducers: (builder) => {
       // Add reducers for additional action types here, and handle loading state as needed
-      builder.addCase(createNewUser.fulfilled, (state, action) => {
+      builder.addCase(getUser.fulfilled, (state, action) => {
         // Add user to the state array
         state.userId = action.payload['_id']
         state.username = action.payload.username;
@@ -40,5 +35,5 @@ const usersSlice = createSlice({
       })
     },
   })
-  export const {} = usersSlice.actions;
-  export default usersSlice.reducer;
+  export const {} = getUserSlice.actions;
+  export default getUserSlice.reducer;
