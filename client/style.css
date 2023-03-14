@@ -3,7 +3,21 @@
     flex-direction: column;
     align-items: center;
 }
-.posts-container h1,h2 {
+.login-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.login {
+    display: flex;
+
+}
+.formbox {
+    display: flex;
+    flex-direction: column;
+}
+.posts-container h1 {
     display: flex;
     justify-content: center;
     align-items: center;

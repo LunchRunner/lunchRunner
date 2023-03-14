@@ -44,7 +44,8 @@ userController.login = async(req, res, next) => {
     const password = req.body.password;
 
     User.find({username: username, password: password})
-      .then(data => {
+    .then(data => {
+      console.log(data)
         res.locals.username = data[0].username; 
         next();
       })
