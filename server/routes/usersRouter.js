@@ -18,7 +18,8 @@ usersRouter.post(
   }
 );
 
-usersRouter.post("/login", userController.login, (req, res, next) => {
+// TO DO: add session/cookies middleware ()
+usersRouter.post("/login", userController.login, sessionController.createSession, (req, res, next) => {
   res.status(200).json(res.locals.username);
 })
 
