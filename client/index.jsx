@@ -8,17 +8,11 @@ import { store } from './redux/store'
 import { Provider } from 'react-redux';
 import Page from './pages/page';
 
+
 const router = createBrowserRouter([
     {
         path: "/",
         element: <App />,
-        // errorElement: <Login />
-        // children: [
-        //     {
-        //         path: "login/",
-        //         element: <login />
-        //     },
-        // ]
     },
     {
         path: "signup",

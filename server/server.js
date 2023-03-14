@@ -4,9 +4,9 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 // require in routes:
-const usersRouter = require("./routes/usersRouter");
-const postsRouter = require("./routes/postsRouter");
-const createError = require("./createError");
+const usersRouter = require("./routes/usersRouter.js");
+const postsRouter = require("./routes/postsRouter.js");
+const createError = require("./createError.js");
 
 const mongoose = require("mongoose");
 
@@ -31,14 +31,14 @@ app.use((req, res) => res.status(404).send("404: This page is out to lunch"));
 
 // global error handler
 app.use((err, req, res, next) => {
-  const defaultErr = createError({
-    log: "Express error handler caught unknown middleware error",
-    status: 500,
-    err: "An error occurred",
-  });
-  console.log(err);
-  const errorObj = Object.assign({}, defaultErr, err);
-  console.log(errorObj.log); // <-- for devs (keep)
+  console.log('inside global error handler');
+  const defaultError = {
+    log: 'Express error handler caught unknown middleware error',
+    status: 400,
+    message: { err: 'An error occurred' }
+  };
+  const errorObj = Object.assign(defaultError, err);
+  console.log('Error: ', errorObj.log); // <-- for devs (keep)
   return res.status(errorObj.status).json(errorObj.message); // <-- for users (would show in postman)
 });
 

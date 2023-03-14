@@ -1,5 +1,5 @@
-const User = require("../models/user");
-const createError = require("../createError");
+const User = require("../models/user.js");
+const createError = require("../createError.js");
 
 function mock20YrOld() {
   return new Date(new Date().setFullYear(new Date().getFullYear() - 20));
