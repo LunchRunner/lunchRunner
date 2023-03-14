@@ -39,6 +39,7 @@ userController.createUser = async (req, res, next) => {
 
 userController.login = async(req, res, next) => {
   try {
+    console.log(req.body)
 
     const username = req.body.username;
     const password = req.body.password;
