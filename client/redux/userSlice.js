@@ -22,7 +22,7 @@ export const createNewUser = createAsyncThunk(
       return json;
     }
 )
-const usersSlice = createSlice({
+export const usersSlice = createSlice({
     name: 'users',
     initialState,
     reducers: {
