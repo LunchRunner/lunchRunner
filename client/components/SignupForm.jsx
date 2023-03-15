@@ -35,14 +35,35 @@ export default function SignupForm(props) {
         
     }
     return (
+        <div className="loginTextBoxes" class="formbox">
         <form onSubmit={handleSubmit}>
-            <input type="text" name="username" value = {form.username} onChange={onChange} placeholder="Username"></input>
-            <input type="password" name="password" value = {form.password} onChange={onChange} placeholder="Password"></input>
-            <input type="text" name="firstName" value = {form.firstName} onChange={onChange} placeholder="Firstname"></input>
-            <input type="text" name="lastName" value = {form.lastName} onChange={onChange} placeholder="Lastname"></input>
-            <input type="date" name="date_of_birth" value={form.date} onChange={onChange} placeholder="Date of birth"></input>
-            <input type="email" name="email" value = {form.email} onChange={onChange} placeholder="Email"></input>
+            <label className = "passUserLabel">
+                Username:
+            </label>
+                <input type="text" name="username" value = {form.username} onChange={onChange} placeholder="Username"></input>
+            <label className = "passUserLabel">
+                Username:
+            </label>
+                <input type="password" name="password" value = {form.password} onChange={onChange} placeholder="Password"></input>
+            <label className = "passUserLabel">
+                Username:
+            </label>
+                <input type="text" name="firstName" value = {form.firstName} onChange={onChange} placeholder="Firstname"></input>
+            <label className = "passUserLabel">
+                Username:
+            </label>
+                <input type="text" name="lastName" value = {form.lastName} onChange={onChange} placeholder="Lastname"></input>
+                <label className = "passUserLabel">
+                Username:
+            </label>
+                <input type="date" name="date_of_birth" value={form.date} onChange={onChange} placeholder="Date of birth"></input>
+                <label className = "passUserLabel">
+                Username:
+            </label>
+                <input type="email" name="email" value = {form.email} onChange={onChange} placeholder="Email"></input>
+            
             <input type="submit"/>
         </form>
+        </div>
     )
 }

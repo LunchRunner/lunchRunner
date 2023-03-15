@@ -34,15 +34,15 @@ export default function LoginForm() {
     return (
         <div className="loginTextBoxes" class="formbox">
         <form onSubmit={handleSubmit}>
-            <label className = "passUserInput">
-                Usernameeeeeeee:
-                <input type="text" name="username" value = {form.username} onChange={onChange}></input>
+            <label className = "passUserLabel">
+                Username:
             </label>
-            <label className = "p   assUserInput">
-                Passwordddd:
-                <input type="password" onChange={onChange} value = {form.password} name="password"></input>
+             <input className = "inputText"type="text" name="username" value = {form.username} onChange={onChange}/>
+            <label className = "passUserLabel">
+                Password:
             </label>
-            <input type="submit" value="Login"></input>
+            <input type="password" onChange={onChange} value = {form.password} name="password"/>
+            <input className = "inputText" type="submit" value="Login"></input>
         </form>
         </div>
     )

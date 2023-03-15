@@ -14,9 +14,17 @@
 }
 
 .imgContainer {
-  background-color: paleturquoise;
+  background-image: url('https://media1.giphy.com/media/Uqw7f8I9UDiuE2tu1H/giphy.gif?cid=ecf05e472t23gero2n147rynxpgzszfvn3p9fgx3pru10tkx&rid=giphy.gif&ct=g');
+  background-size: contain;
   width: 100%;
   height: 20%;
+  
+  display: flex;
+  justify-content: center;
+}
+
+.imgContainer h1 {
+  color: yellowgreen;
 }
 
 .menuButtonContainer {
@@ -31,7 +39,9 @@
 }
 
 .menuButtonContainer button {
-  width: 100%;
+
+  border-radius: 3em;
+  width: 80%;
   background-color: blue;
   color: white;
   padding: 1.2em;
@@ -42,5 +52,4 @@
 
 .menuButtonContainer button:hover {
   cursor: pointer;
-  transform: scale(1.2);
 }

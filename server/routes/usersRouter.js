@@ -19,6 +19,7 @@ usersRouter.post(
 );
 
 usersRouter.post("/login", userController.login, sessionController.createSession, (req, res, next) => {
+  console.log('logged in')
   res.status(200).json(res.locals.user.username);
 })
 
