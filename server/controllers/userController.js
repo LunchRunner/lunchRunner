@@ -11,6 +11,18 @@ const userController = {};
 userController.createUser = async (req, res, next) => {
   const { username, password, firstName, lastName, date_of_birth, email } = req.body;
   console.log("reqbody", req.body);
+
+  //check if user exists
+  const userExists = await User.findOne({ username, email });
+  // User Auth
+  if (userExists) {
+    return next({
+      log:'user already exists',
+      status: 500,
+      message: { err: 'user already exists' },
+    });
+  }
+
   try {
     // hash the password using bcrypt
     bcrypt.hash(password, 10, async (err, hash) => {
