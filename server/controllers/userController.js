@@ -39,15 +39,15 @@ userController.createUser = async (req, res, next) => {
 
 userController.login = async(req, res, next) => {
   try {
-    console.log(req.body)
+    console.log('login req.body:', req.body)
 
     const username = req.body.username;
     const password = req.body.password;
 
-    User.find({username: username, password: password})
-    .then(data => {
-      console.log(data)
-        res.locals.username = data[0].username; 
+    User.findOne({username: username, password: password})
+    .then(user => {
+      console.log('login user:', user)
+        res.locals.user = user; 
         next();
       })
 

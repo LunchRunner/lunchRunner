@@ -3,6 +3,8 @@ const path = require("path");
 const dotenv = require("dotenv");
 dotenv.config();
 
+// TO DO: add cookie parser?
+
 // require in routes:
 const usersRouter = require("./routes/usersRouter.js");
 const postsRouter = require("./routes/postsRouter.js");
