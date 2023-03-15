@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import User from '../../server/models/user'
 import "../styles/SideBar.css" 
+import { useSelector } from 'react-redux';
 
 export default function SideBar() {
 // will need to get data from state about whether the user is logged in or not
@@ -8,9 +9,9 @@ export default function SideBar() {
 
     //fix styling for proportional sidebar/outlet responsive sizing 
     //want sidebar to be a fixed size minimum
-
-  function createSideBarButtons() {
-    if (false) {
+    const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+    function createSideBarButtons() {
+      if (!isLoggedIn) {
       return (
       <div className='menuButtonContainer'>
         <Link to={"signup"}>
