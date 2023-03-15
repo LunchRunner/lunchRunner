@@ -1,0 +1,49 @@
+.postTile{
+  width: 30%;
+  margin-top: 0.7em;
+  /* max-width: 32%;
+  min-width: 32%; */
+  /* max-height: 300px; */
+  /* min-height: 60%; */
+  height: 12em;
+  background-color: yellow;
+  /* margin: 5px; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  /* position:relative; */
+}
+
+/* .image{
+  transition: all ease-in-out .2s;
+}
+
+.image:hover{
+  filter: brightness(.75);
+}
+
+.postTile:hover > h4{
+  visibility: visible;
+}
+
+.postTile > h4{
+  position:absolute;
+  visibility:hidden;
+} */
+
+p{
+  margin: 2%;
+}
+.restaurantText{
+  font-family: Caveat;
+}
+.postInfoText{
+  font-family: Play;
+}
+.joinButton{
+  width: 50%;
+  height: 15%; 
+  margin: 2%;
+}

@@ -1,0 +1,36 @@
+.postDisplay {
+  background-color: red;
+  height: 90%;
+  width: 90%;
+
+  border-radius: 1em;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow-y: scroll;
+}
+
+.postDisplay::-webkit-scrollbar{
+  display: none;
+}
+
+.heading {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.postsContainer {
+  /* width: 50%; */
+  /* display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 0.9em; */
+
+  display: flex;
+  flex-wrap: wrap;
+
+  align-items: center;
+  justify-content: space-around;
+
+}

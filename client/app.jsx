@@ -11,9 +11,8 @@ export default function App() {
         <div className = "mainpage">
             <SideBar/>
             <div className = "outlet">
-                {/* <Outlet />
-                <PostsDisplay/> */}
-                <Login />
+                {/* <Outlet /> */}
+                <PostsDisplay/> 
             </div>
         </div>
         
