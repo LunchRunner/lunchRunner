@@ -62,9 +62,14 @@ const usersSlice = createSlice({
       //   state.userId = action.payload.user.username
       // })
       .addCase(getUser.fulfilled, (state, action) => {
-        console.log(action)
-        state.isLoggedIn = true
-        state.username = action.payload
+        if (action.payload.err) {
+          state.status = 'failed'
+        } else {
+          state.status = 'succeeded'
+          state.isLoggedIn = true
+          state.username = action.payload
+        }
+        
         // if(action.payload.err) { 
         //     state.status = 'failed'
         //   }else {
