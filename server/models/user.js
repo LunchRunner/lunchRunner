@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Post = require("./post.js");
 
 const userSchema = new mongoose.Schema({
-  username: { type: String, required: true },
+  username: { type: String, unique: true, required: true },
   password: { type: String, required: true },
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
@@ -17,6 +17,7 @@ const userSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
+    unique: true,
   },
   img_url: String,
   posts: {

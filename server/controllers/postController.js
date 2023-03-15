@@ -1,5 +1,4 @@
 const Post = require("../models/post");
-const createError = require("../createError");
 
 const postController = {};
 
@@ -17,12 +16,11 @@ postController.createPost = async (req, res, next) => {
     res.locals.post = post;
     next();
   } catch (err) {
-    const errorObj = createError({
+    return next({
       log: err,
       status: 500,
-      message: { err: "Problem in createPost middleware" },
+      message: { err: "Problem in createPost middleware" }
     });
-    next({ errorObj });
   }
 };
 
@@ -35,12 +33,44 @@ postController.getPosts = async (req, res, next) => {
     res.locals.posts = allPosts;
     next();
   } catch (err) {
-    const errorObj = createError({
+    return next({
       log: err,
       status: 500,
-      message: { err: "Problem in getPosts middleware" },
+      message: { err: "Problem in getPosts middleware" }
     });
-    next({ errorObj });
+  }
+};
+
+postController.addRunner = async (req, res, next) => {
+  try {
+    const { username, _id } = req.body;
+    Post.findOne({ _id })
+      .then((post) => {
+        let runnerExists = false;
+        // loop through the post.runner array to check if user is already a runner on the post
+        for (let i = 0; i < post.runners.length; i++) {
+          if (post.runners[i] === username) runnerExists = true;
+        }//if runner wants to be added to a post and the runner has not been added, update the db to add the runner 
+        if (!runnerExists) {
+          let updatedRunners = [...post.runners, username];
+          Post.updateOne({_id}, {runners: updatedRunners})
+            .then(post => next())
+            .catch(err => {
+              return next({
+                log: err, 
+                status: 500, 
+                message: { err: "Error in postController.addRunner --> Post.findOne --> Post.updateOne"}
+              })
+            })
+        }
+        return next()
+      })
+  } catch (err) {
+    return next({
+      log: err, 
+      status: 500, 
+      message: { err: "problem with addRunner middleware"}
+    });
   }
 };
 

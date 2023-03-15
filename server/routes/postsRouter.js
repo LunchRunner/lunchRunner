@@ -13,4 +13,8 @@ postsRouter.post("/", postController.createPost, (req, res) => {
   res.status(200).json({ success: true });
 });
 
+postsRouter.post('/addRunner', postController.addRunner, postController.getPosts, (req, res) => {
+  res.status(200).json(res.locals.posts)
+});
+
 module.exports = postsRouter;
