@@ -6,7 +6,7 @@ export default function PostsCreator() {
   const dispatch = useDispatch();
   const [whereInput, setWhereInput] = useState('');
   const [whenInput, setWhenInput] = useState('');
-  const testName = useSelector((state) => state.getUser.username) || 'falseName';
+  const testName = useSelector((state) => state.user.username) || 'falseName';
 
   function postButtonClick(name) {
     const testName = 'testName'

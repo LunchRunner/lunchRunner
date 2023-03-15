@@ -1,7 +1,8 @@
 import LoginForm from "../components/LoginForm"
-export default function() {
+import "../styles/login.css"
+export default function Login() {
 	return (
-		<div className="login-page1">
+		<div className="login-display">
 		<LoginForm className="login-box"/>
 		</div>
 	)

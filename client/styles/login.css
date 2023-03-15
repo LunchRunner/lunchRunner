@@ -1,0 +1,9 @@
+.login-display{
+  display:flex;
+  background-color: blue;
+  height: 40%;
+  width: 60%;
+  border-radius: 30px;
+  justify-content: center;
+  align-items: center;
+}

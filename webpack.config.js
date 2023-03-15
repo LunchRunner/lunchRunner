@@ -29,6 +29,7 @@ module.exports = {
       directory: path.join(__dirname, "public"),
       publicPath: "/",
     },
+    hot: true,
     port: 8080,
     proxy: {
       "/": "http://localhost:3000",

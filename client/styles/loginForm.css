@@ -1,0 +1,16 @@
+.loginTextBoxes{
+  background-color: yellow;
+  height: 50%;
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.passUserInput{
+  background-color: orange;
+  height: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
