@@ -14,7 +14,7 @@ export default function LoginForm() {
     useEffect(() => {
         console.log(isLoggedIn)
         if(isLoggedIn) {
-            navigate('/home')
+            navigate('/listview')
         }
     }, [isLoggedIn])
     const [form, setForm] = useState({
@@ -32,8 +32,8 @@ export default function LoginForm() {
         dispatch(getUser(form))
     }
     return (
-        <div className="loginTextBoxes" class="formbox">
-        <form onSubmit={handleSubmit}>
+        <div className="loginTextBoxes" >
+        <form className = "formBox"onSubmit={handleSubmit}>
             <label className = "passUserLabel">
                 Username:
             </label>
@@ -41,8 +41,9 @@ export default function LoginForm() {
             <label className = "passUserLabel">
                 Password:
             </label>
-            <input type="password" onChange={onChange} value = {form.password} name="password"/>
-            <input className = "inputText" type="submit" value="Login"></input>
+            <input className = "inputText" type="password" onChange={onChange} value = {form.password} name="password"/>
+            {/* <input className = "inputText" type="submit" value="Login"></input> */}
+            <button className = "loginButton" type="submit" value="Login">Login2</button>
         </form>
         </div>
     )

@@ -8,8 +8,11 @@
 .formBox{
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
+  /* height: 50%; */
+  width: 80%;
 }
 
 .passUserLabel{

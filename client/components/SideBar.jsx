@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import User from '../../server/models/user'
 import "../styles/SideBar.css" 
 
 export default function SideBar() {
@@ -7,11 +8,10 @@ export default function SideBar() {
 
     //fix styling for proportional sidebar/outlet responsive sizing 
     //want sidebar to be a fixed size minimum
-  return (
-    <div className = "sidebar">
-      <div className='imgContainer'>
-        <h1>LunchRunners</h1>
-      </div>
+
+  function createSideBarButtons() {
+    if (false) {
+      return (
       <div className='menuButtonContainer'>
         <Link to={"signup"}>
           <button>Sign Up</button>
@@ -20,6 +20,27 @@ export default function SideBar() {
           <button>Login</button>
          </Link>
       </div>
+      )
+    } else {
+      return (
+      <div className='menuButtonContainer'>
+        <Link to={"listview"}>
+          <button>View Runs</button>
+        </Link>
+        <Link to={"createrun"}>
+          <button>Create New Run</button>
+         </Link>
+      </div>
+      )
+    }
+  }
+
+  return (
+    <div className = "sidebar">
+      <div className='imgContainer'>
+        <h1>LunchRunners</h1>
+      </div>
+        {createSideBarButtons()}
       </div>
   )
 }
