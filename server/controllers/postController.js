@@ -50,7 +50,8 @@ postController.addRunner = async (req, res, next) => {
         // loop through the post.runner array to check if user is already a runner on the post
         for (let i = 0; i < post.runners.length; i++) {
           if (post.runners[i] === username) runnerExists = true;
-        }//if runner wants to be added to a post and the runner has not been added, update the db to add the runner 
+        }
+        //if runner wants to be added to a post and the runner has not been added, update the db to add the runner 
         if (!runnerExists) {
           let updatedRunners = [...post.runners, username];
           Post.updateOne({_id}, {runners: updatedRunners})
@@ -63,6 +64,7 @@ postController.addRunner = async (req, res, next) => {
               })
             })
         }
+        // otherwise, if the runner already exists on the runners array, return next without updating the DB
         return next()
       })
   } catch (err) {
