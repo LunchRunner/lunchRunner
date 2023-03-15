@@ -3,6 +3,8 @@ import { createRoot } from 'react-dom/client';
 import App from './app';
 import Login from './pages/login'
 import Signup from './pages/signup';
+import PostsDisplay from '../client/components/postsDisplay'
+import PostsCreator from '../client/components/postsCreator'
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { store } from './redux/store'
 import { Provider } from 'react-redux';
@@ -25,6 +27,14 @@ const router = createBrowserRouter([
         {
             path: "/home",
             element: <Page />
+        },
+        {
+            path: '/listview',
+            element: <PostsDisplay />
+        },
+        {
+            path: '/createrun',
+            element: <PostsCreator />
         }
         ]
     },
