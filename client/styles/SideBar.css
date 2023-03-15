@@ -1,0 +1,55 @@
+.sidebar {
+  width: 25%;
+  background-color: red;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.outlet {
+  width: 75%;
+  background-color: green;
+  height: 100vh;
+}
+
+.imgContainer {
+  background-image: url('https://media1.giphy.com/media/Uqw7f8I9UDiuE2tu1H/giphy.gif?cid=ecf05e472t23gero2n147rynxpgzszfvn3p9fgx3pru10tkx&rid=giphy.gif&ct=g');
+  background-size: contain;
+  width: 100%;
+  height: 20%;
+  
+  display: flex;
+  justify-content: center;
+}
+
+.imgContainer h1 {
+  color: yellowgreen;
+}
+
+.menuButtonContainer {
+  margin-top: 20%;
+  height: 20%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  overflow: hidden;
+}
+
+.menuButtonContainer button {
+
+  border-radius: 3em;
+  width: 80%;
+  background-color: blue;
+  color: white;
+  padding: 1.2em;
+
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+}
+
+.menuButtonContainer button:hover {
+  cursor: pointer;
+}
