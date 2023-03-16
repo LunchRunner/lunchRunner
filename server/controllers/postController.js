@@ -12,6 +12,8 @@ postController.createPost = async (req, res, next) => {
       placeId: req.body.placeId, // <-- we're pretty sure the schema is not enforced and this can be a string
       expirationTime: req.body.expirationTime, // <-- when they're going (check w frontend about entering date)
       owner: req.body.owner, //<-- connects to current user by ID (won't need frontend field)
+      latitude: res.locals.latitude,
+      longitude: res.locals.longitude
     });
     res.locals.post = post;
     next();
@@ -23,6 +25,30 @@ postController.createPost = async (req, res, next) => {
     });
   }
 };
+
+postController.getCoords = async (req, res, next) => {
+  const { address } = req.body;
+  fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=AIzaSyBjcpgA6P733SBM8RAAsgxZJlVb6rZ0_2U`)
+    .then(data => {
+      if (!data.results[0].geometry.location.lat || !data.results[0].geometry.location.lng) {
+        console.log('Data arrived in unanticipated shape. Data: ', data);
+        return next({
+          log: 'Error in postController.getCoords --> data arrived in unanticipated shape',
+          status: 500,
+          message: {err: 'Server error'}
+        })
+      }
+      res.locals.latitude = data.results[0].geometry.location.lat;
+      res.locals.longitude = data.results[0].geometry.location.lng;
+      return next();
+    })
+    .catch(err => next({
+      log: 'Error in postController.getCoords --> fetch request failed',
+      status: 500,
+      message: {err}
+      })
+    )
+}
 
 // searches the posts collection for all posts
 // returns to client on res.locals.posts
