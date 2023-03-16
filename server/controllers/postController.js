@@ -53,11 +53,12 @@ postController.getCoords = async (req, res, next) => {
 // searches the posts collection for all posts
 // returns to client on res.locals.posts
 postController.getPosts = async (req, res, next) => {
+  console.log('reached')
   try {
     //allPosts = {test: 'get posts'}
     const allPosts = await Post.find({});
     res.locals.posts = allPosts;
-    next();
+    return next();
   } catch (err) {
     return next({
       log: err,
@@ -70,6 +71,7 @@ postController.getPosts = async (req, res, next) => {
 postController.addRunner = async (req, res, next) => {
   try {
     const { username, _id } = req.body;
+    console.log('username:', username, 'id', _id)
     Post.findOne({ _id })
       .then((post) => {
         let runnerExists = false;
@@ -79,6 +81,7 @@ postController.addRunner = async (req, res, next) => {
         }
         //if runner wants to be added to a post and the runner has not been added, update the db to add the runner 
         if (!runnerExists) {
+          console.log('runner doesn\'t exist')
           let updatedRunners = [...post.runners, username];
           Post.updateOne({_id}, {runners: updatedRunners})
             .then(post => next())

@@ -12,8 +12,7 @@ export default function App() {
             <SideBar/>
             <div className = "outlet">
                 <Outlet />
-                {/* <PostsDisplay/> */}
-                {/* <Login /> */}
+                {/* <PostsDisplay/>  */}
             </div>
         </div>
         
