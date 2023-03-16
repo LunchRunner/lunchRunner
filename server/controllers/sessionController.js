@@ -13,7 +13,7 @@ sessionController.createSession = async (req, res, next) => {
     // console.log('sessionid', response);
     res.locals.session = response;
     // console.log('inside session controller')
-    res.cookie('session', response.userId);
+    res.cookie('session', _id);
     return next();
   } catch (err) {
     next({
@@ -24,17 +24,30 @@ sessionController.createSession = async (req, res, next) => {
   }
 }
 
+// verify if the current session cookie is still valid (i.e., a corresponding session still exists in the DB)
 sessionController.verifySession = async (req, res, next) => {
   try {
+    // look for a session document with a userId matching the session cookie
     Session.findOne({ userId: req.cookies.session })
       .then(results => {
-        if (results === null) return next({
-          log: 'Error in sessionController.verifySession --> Session.findOne',
-          status: 500,
-          message: {err: 'Server error.'},
-        });
-        return next();
-      });
+        // if nothing comes back, assign the isVerified flag to false
+        if (results === null) {
+          res.locals.isVerified = false;
+          return next();
+        }
+        // otherwise assign the isVerified flag to true
+        else {
+          res.locals.isVerified = true;
+          return next();
+        }
+      })
+      // error handling for the DB query
+      .catch(err => next({
+        log: 'Error in sessionController.verifySession --> Session.findOne',
+        status: 500,
+        message: {err: 'Server error.'},
+      }))
+  // general error handling
   } catch(err) {
     if (err) return next({
       log: 'Error in sessionController.verifySession --> catch block',

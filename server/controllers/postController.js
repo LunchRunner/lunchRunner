@@ -16,7 +16,7 @@ postController.createPost = async (req, res, next) => {
       longitude: res.locals.longitude
     });
     res.locals.post = post;
-    next();
+    return next();
   } catch (err) {
     return next({
       log: err,
