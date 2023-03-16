@@ -1,5 +1,6 @@
 const express = require('express');
 const oAuthController = require('../controllers/oAuthController.js');
+const sessionController = require('../controllers/sessionController.js');
 const oauthRouter = express.Router();
 const dotenv = require('dotenv');
 dotenv.config();
@@ -17,8 +18,11 @@ oauthRouter.get(
   '/token',
   oAuthController.exchangeCode,
   oAuthController.getUserDetails,
+  sessionController.createSession,
   (req, res) => {
-    res.redirect('/');
+    // console.log('res.locals.user.username', req.locals.user.username);
+    res.body = res.locals.user.username;
+    res.status(200).redirect('/');
   }
 );
 

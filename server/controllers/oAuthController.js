@@ -1,4 +1,4 @@
-const oAuthUser = require('../models/oAuthUser');
+const User = require('../models/user.js')
 const dotenv = require('dotenv');
 const axios = require('axios');
 dotenv.config();
@@ -39,27 +39,23 @@ oAuthController.getUserDetails = (req, res, next) => {
       headers: { Authorization: `Bearer ${res.locals.token}` },
     })
     .then((response) => {
-      const { id, login, email, name } = response.data;
+      const { login } = response.data;
       console.log('response.data from getUserDetails: ', response.data);
       //look in the database for user w/ same OAuth ID as the GitHub user
-      oAuthUser
-        .findOne({ githubId: id })
+      User
+        .findOne({ username: login })
         .then((user) => {
           console.log('this is a user in my oAuthUser fineOne', user);
           // user not found with the same oAuth Id
           if (!user) {
-            const newUser = new oAuthUser({
-              email,
-              isOAuth: true,
-              githubId: id,
+            const newUser = new User({
               username: login,
-              name,
             });
             newUser
               .save()
               .then((user) => {
-                console.log('new oAuth user is created', user);
-                res.locals.userId = user._id;
+                console.log('new Oauth user is created', user);
+                res.locals.user = user;
                 return next();
               })
               .catch(err => {
@@ -71,7 +67,7 @@ oAuthController.getUserDetails = (req, res, next) => {
               });
           } else {
             console.log('User already exists:', user);
-            res.locals.userId = user._id;
+            res.locals.user = user;
             return next();
           }
         })

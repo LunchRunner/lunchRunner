@@ -4,12 +4,12 @@ const bcrypt = require('bcrypt');
 const userController = {};
 
 userController.createUser = async (req, res, next) => {
-  const { username, password, firstName, lastName, date_of_birth, email } =
+  const { username, password } =
     req.body;
   console.log('reqbody', req.body);
 
   //check if user exists
-  const userExists = await User.findOne({ username, email });
+  const userExists = await User.findOne({ username });
   // User Auth
   if (userExists) {
     return next({
@@ -33,13 +33,7 @@ userController.createUser = async (req, res, next) => {
       // create a user with the hashed password
       const user = await User.create({
         username,
-        password: hash,
-        firstName,
-        lastName,
-        date_of_birth,
-        email,
-        img_url: 'https://cdn-icons-png.flaticon.com/512/456/456212.png',
-        posts: [],
+        password: hash
       });
       res.locals.user = user;
       return next();
