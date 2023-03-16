@@ -5,7 +5,7 @@ const initialState = {
     lastName: "",
     userId: "",
     status:"idle", 
-    isLoggedIn: false
+    isLoggedIn: false,
 }
 export const createNewUser = createAsyncThunk(
     'users/createNewUser', 

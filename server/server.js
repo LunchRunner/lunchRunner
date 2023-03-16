@@ -1,9 +1,10 @@
 const express = require("express");
 const path = require("path");
+const cookieParser = require('cookie-parser');
+const Session = require('./models/session.js');
 const dotenv = require("dotenv");
 dotenv.config();
 
-// TO DO: add cookie parser?
 
 // require in routes:
 const usersRouter = require("./routes/usersRouter.js");
@@ -19,8 +20,9 @@ mongoose.connect(uri);
 
 const PORT = 3000;
 
-// parse request body:
+// parse request body and cookies:
 app.use(express.json());
+app.use(cookieParser());
 
 // handle static file requests:
 app.use(express.static(path.resolve(__dirname, "../public")));
@@ -29,6 +31,12 @@ app.use(express.static(path.resolve(__dirname, "../public")));
 app.use("/users", usersRouter);
 app.use("/posts", postsRouter);
 app.use("/oauth", oauthRouter);
+
+// manipulate the database - for developers only
+app.get('/deleteSessions', async (req, res, next) => {
+  await Session.deleteMany({});
+  return res.status(200).end();
+})
 
 
 // catch-all route handler for any requests to an unknown route

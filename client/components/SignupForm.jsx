@@ -16,12 +16,12 @@ export default function SignupForm(props) {
         }
     }, [status])
     const [form, setForm] = useState({
-        username: "a",
-        password: "b",
-        firstName: "c",
-        lastName: "d",
+        username: "",
+        password: "",
+        firstName: "",
+        lastName: "",
         date_of_birth: new Date(new Date().setFullYear(new Date().getFullYear() - 20)),
-        email: "a@a.com",
+        email: "",
     });
     const onChange = (e) => {
         setForm((prev) => ({
@@ -42,22 +42,22 @@ export default function SignupForm(props) {
             <label className = "passUserLabel">
                 Username:
             </label>
-                <input type="text" name="username" value = {form.username} onChange={onChange} placeholder="Username"></input>
+                <input type="text" name="username" value = {form.username} onChange={onChange} placeholder="username"></input>
 
             <label className = "passUserLabel">
                 Password:
             </label>
-                <input type="password" name="password" value = {form.password} onChange={onChange} placeholder="Password"></input>
+                <input type="password" name="password" value = {form.password} onChange={onChange} placeholder="password"></input>
             
             <label className = "passUserLabel">
                 First Name:
             </label>
-                <input type="text" name="firstName" value = {form.firstName} onChange={onChange} placeholder="Firstname"></input>
+                <input type="text" name="firstName" value = {form.firstName} onChange={onChange} placeholder="first name"></input>
             
             <label className = "passUserLabel">
                 Last Name:
             </label>
-                <input type="text" name="lastName" value = {form.lastName} onChange={onChange} placeholder="Lastname"></input>
+                <input type="text" name="lastName" value = {form.lastName} onChange={onChange} placeholder="last name"></input>
         
             <label className = "passUserLabel">
                 DOB:
@@ -67,7 +67,7 @@ export default function SignupForm(props) {
             <label className = "passUserLabel">
                 Email:
             </label>
-                <input type="email" name="email" value = {form.email} onChange={onChange} placeholder="Email"></input>
+                <input type="email" name="email" value = {form.email} onChange={onChange} placeholder="***@mail.com"></input>
             
             <input type="submit"/>
         </form>

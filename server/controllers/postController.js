@@ -12,9 +12,11 @@ postController.createPost = async (req, res, next) => {
       placeId: req.body.placeId, // <-- we're pretty sure the schema is not enforced and this can be a string
       expirationTime: req.body.expirationTime, // <-- when they're going (check w frontend about entering date)
       owner: req.body.owner, //<-- connects to current user by ID (won't need frontend field)
+      latitude: res.locals.latitude,
+      longitude: res.locals.longitude
     });
     res.locals.post = post;
-    next();
+    return next();
   } catch (err) {
     return next({
       log: err,
@@ -24,14 +26,39 @@ postController.createPost = async (req, res, next) => {
   }
 };
 
+postController.getCoords = async (req, res, next) => {
+  const { address } = req.body;
+  fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=AIzaSyBjcpgA6P733SBM8RAAsgxZJlVb6rZ0_2U`)
+    .then(data => {
+      if (!data.results[0].geometry.location.lat || !data.results[0].geometry.location.lng) {
+        console.log('Data arrived in unanticipated shape. Data: ', data);
+        return next({
+          log: 'Error in postController.getCoords --> data arrived in unanticipated shape',
+          status: 500,
+          message: {err: 'Server error'}
+        })
+      }
+      res.locals.latitude = data.results[0].geometry.location.lat;
+      res.locals.longitude = data.results[0].geometry.location.lng;
+      return next();
+    })
+    .catch(err => next({
+      log: 'Error in postController.getCoords --> fetch request failed',
+      status: 500,
+      message: {err}
+      })
+    )
+}
+
 // searches the posts collection for all posts
 // returns to client on res.locals.posts
 postController.getPosts = async (req, res, next) => {
+  console.log('reached')
   try {
     //allPosts = {test: 'get posts'}
     const allPosts = await Post.find({});
     res.locals.posts = allPosts;
-    next();
+    return next();
   } catch (err) {
     return next({
       log: err,
@@ -44,6 +71,7 @@ postController.getPosts = async (req, res, next) => {
 postController.addRunner = async (req, res, next) => {
   try {
     const { username, _id } = req.body;
+    console.log('username:', username, 'id', _id)
     Post.findOne({ _id })
       .then((post) => {
         let runnerExists = false;
@@ -53,6 +81,7 @@ postController.addRunner = async (req, res, next) => {
         }
         //if runner wants to be added to a post and the runner has not been added, update the db to add the runner 
         if (!runnerExists) {
+          console.log('runner doesn\'t exist')
           let updatedRunners = [...post.runners, username];
           Post.updateOne({_id}, {runners: updatedRunners})
             .then(post => next())

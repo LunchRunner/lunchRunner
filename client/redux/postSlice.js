@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
 	postTotal: 0,
 	posts: [],
+	view: ''
 }
 
 export const postSlice = createSlice({
@@ -16,10 +17,13 @@ export const postSlice = createSlice({
 		setInitialPosts: (state, action) => {
 			state.posts = action.payload; 
 			state.postTotal = action.payload.length;
+		},
+		changeView: (state, action) => {
+			state.view = action.payload
 		}
 	}
 
 })
 
-export const { addPost, setInitialPosts } = postSlice.actions;
+export const { addPost, setInitialPosts, changeView } = postSlice.actions;
 export default postSlice.reducer;
