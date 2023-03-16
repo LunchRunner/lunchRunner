@@ -44,7 +44,13 @@ export default function LoginForm() {
             <input className = "inputText" type="password" onChange={onChange} value = {form.password} name="password"/>
             {/* <input className = "inputText" type="submit" value="Login"></input> */}
             <button className = "loginButton" type="submit" value="Login">Login</button>
+            
         </form>
+        {/* <button
+            onClick={(e) => {
+            // fetch('/oauth', {mode: 'no-cors'})}}
+            window.location.href='/oauth'}}
+            >Login With Github</button> */}
         </div>
     )
 }

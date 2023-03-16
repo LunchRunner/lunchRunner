@@ -7,7 +7,7 @@ const timeStamps = {
 const postSchema = new mongoose.Schema(
   {
     placeId: String,
-    expirationTime: Date,
+    expirationTime: {type: Date, expires: 5 },
     owner: String,
     runners: Array,
     latitude: String,
