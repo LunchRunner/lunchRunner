@@ -4,8 +4,12 @@ const sessionController = require("../controllers/sessionController.js");
 
 const usersRouter = express.Router();
 
-usersRouter.post("/createUser", userController.createUser, sessionController.createSession, (req, res, next) => {
-    console.log("resuser", res.locals.user);
+usersRouter.post(
+  "/createUser",
+  userController.createUser,
+  sessionController.createSession,
+  (req, res, next) => {
+    console.log("res.user", res.locals.user);
     const { user, session } = res.locals;
     return res.status(200).json({
       user,

@@ -33,8 +33,15 @@ app.use("/posts", postsRouter);
 app.use("/oauth", oauthRouter);
 
 // manipulate the database - for developers only
+// get requests to /deleteSessions delete all sessions in DB
 app.get('/deleteSessions', async (req, res, next) => {
   await Session.deleteMany({});
+  return res.status(200).end();
+})
+
+// get requests to /deletePosts delete all posts in DB
+app.get('/deletePosts', async (req, res, next) => {
+  await Post.deleteMany({});
   return res.status(200).end();
 })
 
