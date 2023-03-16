@@ -92,4 +92,29 @@ userController.login = async (req, res, next) => {
   }
 }
 
+userController.getUserInfo = async (req, res, next) => {
+  console.log('in getUserInfo');
+  // if the user doesn't have a valid session, skip this step
+  if (!res.locals.isVerified) return next();
+  // if the user does have a valid session, find the user's DB information and save to res.locals.user
+  User.findOne({ _id: req.cookies.session })
+    .then(user => {
+      if (user === null) return next({
+        log: 'userController.getUserInfo --> User.findOne --> no user found matching information on the session cookie.',
+        status: 500,
+        message: {err: 'Server error.'}
+      })
+      console.log('user query found the user');
+      res.locals.user = user;
+      return next();
+    })
+    .catch(err => {
+      return next({
+        log: `userController.getUserInfo --> User.findOne --> ${err}`,
+        status: 500,
+        message: {err: 'Server error.'}
+      })
+    })
+}
+
 module.exports = userController;

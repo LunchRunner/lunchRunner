@@ -14,7 +14,7 @@ postController.createPost = async (req, res, next) => {
       owner: req.body.owner, //<-- connects to current user by ID (won't need frontend field)
     });
     res.locals.post = post;
-    next();
+    return next();
   } catch (err) {
     return next({
       log: err,
@@ -31,7 +31,7 @@ postController.getPosts = async (req, res, next) => {
     //allPosts = {test: 'get posts'}
     const allPosts = await Post.find({});
     res.locals.posts = allPosts;
-    next();
+    return next();
   } catch (err) {
     return next({
       log: err,
