@@ -1,6 +1,7 @@
 .postTile{
   width: 30%;
-  margin-top: 0.7em;
+  margin: 0;
+  /* margin-top: 0.7em; */
   /* max-width: 32%;
   min-width: 32%; */
   /* max-height: 300px; */
@@ -10,7 +11,7 @@
   /* margin: 5px; */
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
 
   /* position:relative; */
@@ -34,7 +35,7 @@
 } */
 
 p{
-  margin: 2%;
+  /* margin: 2%; */
 }
 .restaurantText{
   font-family: Caveat;
@@ -45,5 +46,20 @@ p{
 .joinButton{
   width: 50%;
   height: 15%; 
-  margin: 2%;
+  /* margin: 2%; */
+}
+
+.postTile h1 {
+  margin: 0;
+}
+
+.postTile p {
+  margin: 0;
+}
+
+.timeInfo {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }

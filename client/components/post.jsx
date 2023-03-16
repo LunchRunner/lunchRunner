@@ -8,31 +8,47 @@ export default function(props) {
     const dispatch = useDispatch()
     const username = useSelector((state) => state.user.username);
 
+    const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+    const time = props.expirationTime;
+
+    const date = new Date(time)
+
+    const month = monthNames[date.getMonth()]
+    const day = date.getDate()
+    console.log(month, day)
+    
+
     function handleClick(e) {
-        console.log(username)
         //create the body of our post request
-        const body = { username: 'test', _id: e.target.parentElement.id }
+        const body = { username, _id: e.target.parentElement.id }
     
         const requestOptions = {
           method: "POST",
+          body: JSON.stringify(body),
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(body)
         }
         
-        // fetch('/posts', requestOptions)
-        //   .then(res => res.json())
-        //   .then((data) => {
-        //     dispatch(setInitialPosts(data))
-        //   })
-        //   .catch((err) => console.log(err))
+        fetch('/posts/addRunner', requestOptions)
+          .then(res => res.json())
+          .then((data) => {
+            console.log(data)
+            dispatch(setInitialPosts(data))
+          })
+          .then(()=>{window.location.reload})
+          .catch((err) => console.log(err))
       }
 
     return (
         <div className = "postTile" id={`${props.id}`}>
             {/* <img className = "image" src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80"/> */}
             {/* <div className = "runInfo"> */}
+            <div className="timeInfo">
+                <p>{`${month} ${day}`}</p>
+                <p>12:30PM</p>
+            </div>
                 <h1 className = "restaurantText">
                     {props.placeId}
                 </h1>
@@ -43,7 +59,7 @@ export default function(props) {
                     {props.owner}
                 </p>
                 <p className = "postInfoText">
-                    joiners:
+                    joiners: {props.joiners}
                 </p>
             {/* </div> */}
            

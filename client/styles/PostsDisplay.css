@@ -8,10 +8,9 @@
   display: flex;
   flex-direction: column;
 
-  overflow-y: scroll;
 }
 
-.postDisplay::-webkit-scrollbar{
+.postsContainer::-webkit-scrollbar{
   display: none;
 }
 
@@ -26,6 +25,8 @@
   /* display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 0.9em; */
+  overflow-y: scroll;
+  height: 90%;
 
   display: flex;
   flex-wrap: wrap;
