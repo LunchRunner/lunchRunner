@@ -1,5 +1,6 @@
 const express = require("express");
 const path = require("path");
+const cookieParser = require('cookie-parser');
 const dotenv = require("dotenv");
 dotenv.config();
 
@@ -19,8 +20,9 @@ mongoose.connect(uri);
 
 const PORT = 3000;
 
-// parse request body:
+// parse request body and cookies:
 app.use(express.json());
+app.use(cookieParser());
 
 // handle static file requests:
 app.use(express.static(path.resolve(__dirname, "../public")));
