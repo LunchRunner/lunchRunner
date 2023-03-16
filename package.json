@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack serve"
+    "dev-server": "nodemon server/server.js",
+    "dev": "webpack serve & nodemon server/server.js"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,7 @@
     "@babel/preset-react": "^7.18.6",
     "babel-loader": "^9.1.2",
     "css-loader": "^6.7.3",
+    "dotenv": "^16.0.3",
     "html-webpack-plugin": "^5.5.0",
     "style-loader": "^3.3.1",
     "webpack": "^5.76.0",
@@ -30,11 +32,22 @@
     "webpack-dev-server": "^4.11.1"
   },
   "dependencies": {
+    "@react-google-maps/api": "^2.18.1",
     "@reduxjs/toolkit": "^1.9.3",
+    "axios": "^1.3.4",
+    "bcrypt": "^5.1.0",
+    "concurrently": "^7.6.0",
+    "cookie-parser": "^1.4.6",
     "express": "^4.18.2",
+    "mongoose": "^7.0.1",
+    "nodemon": "^2.0.21",
     "react": "^18.2.0",
+    "react-cool-onclickoutside": "^1.7.0",
     "react-dom": "^18.2.0",
+    "react-places-autocomplete": "^7.3.0",
     "react-redux": "^8.0.5",
-    "react-router": "^6.9.0"
+    "react-router": "^6.9.0",
+    "react-router-dom": "^6.9.0",
+    "use-places-autocomplete": "^4.0.0"
   }
 }

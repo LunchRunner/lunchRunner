@@ -1,0 +1,13 @@
+body {
+  margin: 0;
+}
+
+.mainpage {
+  display: flex;
+}
+
+.outlet {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

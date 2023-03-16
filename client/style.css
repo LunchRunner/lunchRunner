@@ -1,0 +1,79 @@
+.posts-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.login-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.login {
+    display: flex;
+
+}
+.formbox {
+    display: flex;
+    flex-direction: column;
+}
+.posts-container h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.postBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid black;
+    width: 200px;
+    height: 100px;
+}
+.postBox input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.postBox .postButton {
+    display: flex;
+    align-self: center;
+}
+.signup-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.signup-container form {
+    border: 2px solid blue;
+    border-radius: 2px;
+    display: flex;
+    flex-direction: column;
+}
+.postContainer{
+    color: white;
+    border: 2px solid black;
+    border-radius: 20px;
+    width: 80%;
+    height: 90%;
+    background-color:grey;
+    opacity: 0.9;
+}
+h1 {
+    color: #32CD32;
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.posts-container span{
+    opacity: 1;
+}
+body{
+    /* background-image: url('https://media1.giphy.com/media/Uqw7f8I9UDiuE2tu1H/giphy.gif?cid=ecf05e472t23gero2n147rynxpgzszfvn3p9fgx3pru10tkx&rid=giphy.gif&ct=g'); */
+    /* background-repeat: round; */
+    background-position: 0%;
+    background-size: 100% auto;
+}
