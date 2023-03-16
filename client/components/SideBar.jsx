@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux"
 import User from '../../server/models/user'
 import { changeView } from "../redux/postSlice";
 import "../styles/SideBar.css" 
+import { useSelector } from 'react-redux';
 import Home from "./map";
 
 

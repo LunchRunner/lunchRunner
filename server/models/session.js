@@ -6,13 +6,10 @@ const sessionSchema = new mongoose.Schema({
     ref: "User",
     required: true,
   },
-  loginTime: {
+  createdAt: {
     type: Date,
-    default: () => Date.now,
-    required: true,
-  },
-  logoutTime: {
-    type: Date,
+    expires: 120,
+    default: Date.now,
   },
 });
 

@@ -1,5 +1,6 @@
 const express = require("express");
 const path = require("path");
+const cookieParser = require('cookie-parser');
 const dotenv = require("dotenv");
 dotenv.config();
 
@@ -8,6 +9,7 @@ dotenv.config();
 // require in routes:
 const usersRouter = require("./routes/usersRouter.js");
 const postsRouter = require("./routes/postsRouter.js");
+const oauthRouter = require("./routes/oauthRouter.js");
 const createError = require("./createError.js");
 
 const mongoose = require("mongoose");
@@ -18,8 +20,9 @@ mongoose.connect(uri);
 
 const PORT = 3000;
 
-// parse request body:
+// parse request body and cookies:
 app.use(express.json());
+app.use(cookieParser());
 
 // handle static file requests:
 app.use(express.static(path.resolve(__dirname, "../public")));
@@ -27,6 +30,8 @@ app.use(express.static(path.resolve(__dirname, "../public")));
 // handle requests to users and posts
 app.use("/users", usersRouter);
 app.use("/posts", postsRouter);
+app.use("/oauth", oauthRouter);
+
 
 // catch-all route handler for any requests to an unknown route
 app.use((req, res) => res.status(404).send("404: This page is out to lunch"));

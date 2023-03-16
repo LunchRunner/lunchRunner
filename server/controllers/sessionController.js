@@ -4,18 +4,17 @@ const sessionController = {};
 
 sessionController.createSession = async (req, res, next) => {
   try {
-    console.log('res.locals.user: ', res.locals.user)
+    // console.log('res.locals.user: ', res.locals.user)
     const { _id } = res.locals.user;
     const response = await Session.create({
       userId: _id,
-      loginTime: Date.now(),
+      createdAt: Date.now(),
     });
-    console.log('sessionid', response);
+    // console.log('sessionid', response);
     res.locals.session = response;
-    console.log('inside session controller')
-    res.cookie('sessionId', response._id, { maxAge: 86400000 });
-    res.cookie('userId', response.userId);
-    next();
+    // console.log('inside session controller')
+    res.cookie('session', response.userId);
+    return next();
   } catch (err) {
     next({
       log: "Error in createSession",
@@ -25,6 +24,24 @@ sessionController.createSession = async (req, res, next) => {
   }
 }
 
-//isLoggedIn Session to check if there is a session that is still valid? 
+sessionController.verifySession = async (req, res, next) => {
+  try {
+    Session.findOne({ userId: req.cookies.session })
+      .then(results => {
+        if (results === null) return next({
+          log: 'Error in sessionController.verifySession --> Session.findOne',
+          status: 500,
+          message: {err: 'Server error.'},
+        });
+        return next();
+      });
+  } catch(err) {
+    if (err) return next({
+      log: 'Error in sessionController.verifySession --> catch block',
+      status: 500,
+      message: {err},
+    });
+  };
+};
 
 module.exports = sessionController;
