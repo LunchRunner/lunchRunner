@@ -19,6 +19,8 @@ const postSchema = new mongoose.Schema(
     //   ref: "User",
     // },
     runners: Array,
+    latitude: String,
+    longitude: String,
     tags: [
       {
         timeOfTag: {
