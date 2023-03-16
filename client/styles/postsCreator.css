@@ -1,0 +1,14 @@
+.post {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.post input {
+  width: 100%;
+}
+
+.post button {
+  width: 100%;
+}

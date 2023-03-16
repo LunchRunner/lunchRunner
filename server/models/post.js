@@ -18,9 +18,6 @@ const postSchema = new mongoose.Schema(
     //   type: mongoose.Schema.Types.ObjectId,
     //   ref: "User",
     // },
-    runners: Array,
-    latitude: String,
-    longitude: String,
     tags: [
       {
         timeOfTag: {
@@ -36,7 +33,7 @@ const postSchema = new mongoose.Schema(
   },
   { timeStamps }
 );
-
+// postSchema.createIndex({expirationTime:1},{expireAfterSeconds:10})
 const Post = mongoose.model("Post", postSchema);
 
 module.exports = Post;

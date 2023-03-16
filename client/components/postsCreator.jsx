@@ -2,8 +2,11 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { addPost } from "../redux/postSlice";
 import SearchForm from './SearchForm.jsx';
+import { useNavigate } from 'react-router-dom';
+import "../styles/postsCreator.css"
 
 export default function PostsCreator() {
+  const navigate = useNavigate()
   const user = useSelector((state) => state.user.username);
   const dispatch = useDispatch();
   const [whereInput, setWhereInput] = useState('');
@@ -13,15 +16,18 @@ export default function PostsCreator() {
   function postButtonClick(e) {
     const testName = 'testName'
     let address = e.target.parentElement.firstChild.firstChild.value
-    address = address.split(' ').join('+')
-
     const placeName = address.slice(0, address.indexOf(','))
+    address = address.split(' ').join('+')
     const body = { placeId: placeName, expirationTime: whenInput, owner: user, address }
 
-    dispatch(addPost(body))
+    if (!address || !whenInput) {
+      return;
+    }
+
+
     const headers = new Headers();
     headers.append('Content-Type', 'application/json')
-
+    
     const requestOptions = {
       method: "POST",
       headers: {
@@ -32,6 +38,9 @@ export default function PostsCreator() {
     fetch('/posts', requestOptions)
       .then(res => res.json())
       .then((data) => console.log(data))
+      .then((data) => {
+        navigate('/listview')
+      })
       .catch((err) => console.log(err))
 
     setWhereInput('');

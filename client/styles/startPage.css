@@ -5,7 +5,25 @@
   justify-content: center;
   align-items: center;
 }
+
+
+@keyframes change-color {
+ 25% {
+   color: #00A4BD;
+ }
+ 50% {
+   color: #FF7A59;
+ }
+ 75% {
+   color: #00BDA5;
+ }
+ 100% {
+   color: #6A78D1;
+ }
+}
+
 .startText{
+  color: #6A78D1;
   text-align: center;
   font-size: 2.5em;
   font-family: monospace;
@@ -14,7 +32,12 @@
   margin: 0px;
   margin-block: 0px;
   padding: .67em;
+  animation-name: change-color;
+  animation-duration: 8s;
+  animation-iteration-count: infinite;
 }
+
+
 
 .startText:hover{
   transform: translateY(-0.5em);

@@ -1,5 +1,5 @@
 .postDisplay {
-  background-color: red;
+  /* background-color: red; */
   height: 90%;
   width: 90%;
 
@@ -21,17 +21,26 @@
 }
 
 .postsContainer {
-  /* width: 50%; */
+  min-width: 450px;
   /* display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 0.9em; */
+  margin-block-start: 1px;
   overflow-y: scroll;
   height: 90%;
 
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  /* flex-wrap: wrap; */
 
   align-items: center;
-  justify-content: space-around;
 
 }
+
+.postsContainer:nth-child(odd) {
+  margin-left: 1em;
+}
+
+/* .postsContainer:nth-child(even) {
+  margin-right: 1em;
+} */

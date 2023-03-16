@@ -12,7 +12,7 @@ export default function SignupForm(props) {
     const navigate = useNavigate()
     useEffect(() => {
         if(status == 'succeeded') {
-            navigate('/home')
+            navigate('/listview')
         }
     }, [status])
     const [form, setForm] = useState({

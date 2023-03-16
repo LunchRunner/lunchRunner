@@ -1,5 +1,6 @@
 .sidebar {
   width: 25%;
+  min-width: 300px;
   /* background-color: #FAF9F6; */
   background-color: #232b2b;
 
@@ -60,10 +61,9 @@
   padding: 1.2em;
 
   overflow: hidden;
-  transition: all 0.3s ease-in-out;
-  margin-left: 14em;
+  transition: all 0.4s ease-in-out;
+  margin-left: 3.5em;
 
-  text-indent: -4em;
 
   border: 0.3em solid purple;
 }
@@ -71,13 +71,21 @@
 .menuButtonContainer button:disabled {
   background-color: purple;
   color: white;
-  transform: translateX(-1.5em);
-  box-shadow: 0em 0em 2em purple;
+  transform: translateY(.2em);
+  box-shadow: inset 0px 0px 5px 5px black;
 }
 
 .menuButtonContainer button:hover {
   cursor: pointer;
-  transform: translateX(-1.5em);
+  background-color: purple;
+  color: white;
+  border-color: rgb(99, 1, 99);
+  transform: translateY(.1em);
+}
+.menuButtonContainer button:active {
+  cursor: pointer;
+  transform: translateY(.2em);
+  box-shadow: inset 0px 0px 2px 2px black;
 }
 
 .map {

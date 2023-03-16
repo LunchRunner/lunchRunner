@@ -8,15 +8,24 @@ export default function(props) {
     const dispatch = useDispatch()
     const username = useSelector((state) => state.user.username);
 
+    function createButton(user) {
+      if (username != props.owner && !props.joiners.includes(username)) {
+        return (
+          <button className = "joinButton"
+            onClick={(e) => handleClick(e)}
+            >Join</button>
+        )
+      } else {
+        return <button className="joinButton" disabled={true}>Already Going</button>
+      }
+    }
+
     const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-
     const time = props.expirationTime;
-
     const date = new Date(time)
-
     const month = monthNames[date.getMonth()]
     const day = date.getDate()
-    console.log(month, day)
+    const displayTime = date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
     
 
     function handleClick(e) {
@@ -37,9 +46,13 @@ export default function(props) {
             console.log(data)
             dispatch(setInitialPosts(data))
           })
-          .then(()=>{window.location.reload})
           .catch((err) => console.log(err))
       }
+
+      const joinerList = [];
+      props.joiners.map(person => {
+        joinerList.push(<p>{person}</p>)
+      })
 
     return (
         <div className = "postTile" id={`${props.id}`}>
@@ -47,25 +60,23 @@ export default function(props) {
             {/* <div className = "runInfo"> */}
             <div className="timeInfo">
                 <p>{`${month} ${day}`}</p>
-                <p>12:30PM</p>
+                <p>{`${displayTime}`}</p>
             </div>
                 <h1 className = "restaurantText">
                     {props.placeId}
                 </h1>
-                <p className = "postInfoText">
-                    {props.expirationTime}
-                </p>
-                <p className = "postInfoText">
+                <p className = "postOwnerText">
                     {props.owner}
                 </p>
                 <p className = "postInfoText">
-                    joiners: {props.joiners}
+                    joiners: 
                 </p>
+                <div className = "joinerStyle">
+                {joinerList}
+                </div>
             {/* </div> */}
            
-            <button className = "joinButton"
-            onClick={(e) => handleClick(e)}
-            >Join</button>
+            {createButton(username)}
         </div>
     );
 }

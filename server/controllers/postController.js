@@ -28,7 +28,9 @@ postController.createPost = async (req, res, next) => {
 
 postController.getCoords = async (req, res, next) => {
   const { address } = req.body;
-  fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=AIzaSyBjcpgA6P733SBM8RAAsgxZJlVb6rZ0_2U`)
+  const fetchStr = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=AIzaSyBjcpgA6P733SBM8RAAsgxZJlVb6rZ0_2U`
+  fetch(fetchStr)
+    .then(data => data.json())
     .then(data => {
       if (!data.results[0].geometry.location.lat || !data.results[0].geometry.location.lng) {
         console.log('Data arrived in unanticipated shape. Data: ', data);

@@ -13,8 +13,13 @@ export default function SideBar() {
   let viewState
   const dispatch = useDispatch()
 
+  //changes styling of button depending on view  
   function handleClick(v) {
-    dispatch(changeView(v))
+    // if(isLoggedIn) ;
+    // else{
+      dispatch(changeView(v))
+    // }
+    
   }
 
 // will need to get data from state about whether the user is logged in or not
@@ -25,9 +30,12 @@ export default function SideBar() {
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
 
   function renderMap() { 
+    if (isLoggedIn) {
       return (
         <Home />
       )
+    }
+   
   }
 
   function createSideBarButtons() {

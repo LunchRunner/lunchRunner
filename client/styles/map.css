@@ -2,3 +2,23 @@
   width: 90%;
   height: 100%;
 }
+
+.mapBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.mapBox h4 {
+  margin: 0;
+}
+
+.mapBox p {
+  margin-top: 0.3em;
+  margin-bottom: 0;
+}
+
+.mapBox span {
+  font-weight: bold;
+}

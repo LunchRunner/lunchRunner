@@ -1,20 +1,25 @@
 .postTile{
   width: 30%;
-  margin: 0;
-  /* margin-top: 0.7em; */
-  /* max-width: 32%;
-  min-width: 32%; */
-  /* max-height: 300px; */
-  /* min-height: 60%; */
-  height: 12em;
-  background-color: yellow;
-  /* margin: 5px; */
+  min-width: 300px;
+  margin: 1%;
+  min-height: 40%;
+  background-color: rgb(228, 191, 231);
+  border-color: rgb(213, 156, 239);
+  border-width: 10px;
+  border-radius: 1.5%;
+  border-style: solid;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  transition: all 0.3s ease-in-out;
+}
 
-  /* position:relative; */
+.postTile:hover{
+  transform: scale(1.2) translateY(1.5em);
+  z-index: 5;
+  background-color: rgb(213, 156, 239);
+  border-color: rgb(164, 120, 185);
 }
 
 /* .image{
@@ -62,4 +67,18 @@ p{
   display: flex;
   align-items: center;
   justify-content: space-around;
+}
+
+.joinerStyle{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* flex-wrap: wrap; */
+
+
+}
+
+.postOwnerText {
+  font-weight: bold;
 }
