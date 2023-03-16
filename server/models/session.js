@@ -8,7 +8,7 @@ const sessionSchema = new mongoose.Schema({
   },
   createdAt: {
     type: Date,
-    expires: 120,
+    expires: 600,
     default: Date.now,
   },
 });
