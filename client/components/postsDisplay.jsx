@@ -10,20 +10,40 @@ export default function() {
    // const [posts, setPosts] = useState([]);
    const dispatch = useDispatch();
 
+   // useEffect(() => {
+   //    const asyncFunc = () => {
+   //       fetch('/posts', { mode: "no-cors" })
+   //          .then(res => res.json())
+   //          .then((data) => {
+   //             dispatch(setInitialPosts(data))
+   //          })
+   //          .catch((err) => console.log(err))
+
+   //    };
+   //    asyncFunc()
+   //    dispatch(changeView('viewruns'))
+
+   // }, [])
+
    useEffect(() => {
-      const asyncFunc = () => {
-         fetch('/posts', { mode: "no-cors" })
-            .then(res => res.json())
-            .then((data) => {
-               dispatch(setInitialPosts(data))
-            })
-            .catch((err) => console.log(err))
+      asyncFunc();
+      const interval = setInterval(() => {
+        asyncFunc();
+        dispatch(changeView("viewruns"));
+      }, 1000);
+      return () => clearInterval(interval);
+    }, []);
+  
+    const asyncFunc = () => {
+      fetch("/posts", { mode: "no-cors" })
+        .then((res) => res.json())
+        .then((data) => {
+          dispatch(setInitialPosts(data));
+        })
+        .catch((err) => console.log(err));
+    };
 
-      };
-      asyncFunc()
-      dispatch(changeView('viewruns'))
 
-   }, [])
    const posts = useSelector((state) => state.post.posts);
 
    function listPosts(posts) {
