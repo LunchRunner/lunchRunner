@@ -18,10 +18,10 @@ export default function SignupForm(props) {
     const [form, setForm] = useState({
         username: "",
         password: "",
-        firstName: "",
-        lastName: "",
-        date_of_birth: new Date(new Date().setFullYear(new Date().getFullYear() - 20)),
-        email: "",
+        // firstName: "",
+        // lastName: "",
+        // date_of_birth: new Date(new Date().setFullYear(new Date().getFullYear() - 20)),
+        // email: "",
     });
     const onChange = (e) => {
         setForm((prev) => ({
@@ -49,7 +49,7 @@ export default function SignupForm(props) {
             </label>
                 <input type="password" name="password" value = {form.password} onChange={onChange} placeholder="password"></input>
             
-            <label className = "passUserLabel">
+            {/* <label className = "passUserLabel">
                 First Name:
             </label>
                 <input type="text" name="firstName" value = {form.firstName} onChange={onChange} placeholder="first name"></input>
@@ -67,7 +67,7 @@ export default function SignupForm(props) {
             <label className = "passUserLabel">
                 Email:
             </label>
-                <input type="email" name="email" value = {form.email} onChange={onChange} placeholder="***@mail.com"></input>
+                <input type="email" name="email" value = {form.email} onChange={onChange} placeholder="***@mail.com"></input> */}
             
             <input type="submit"/>
         </form>

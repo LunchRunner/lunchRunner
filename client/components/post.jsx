@@ -68,9 +68,9 @@ export default function(props) {
                 <p className = "postOwnerText">
                     {props.owner}
                 </p>
-                <p className = "postInfoText">
+                {/* <p className = "postInfoText">
                     joiners: 
-                </p>
+                </p> */}
                 <div className = "joinerStyle">
                 {joinerList}
                 </div>

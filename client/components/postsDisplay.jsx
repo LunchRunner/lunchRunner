@@ -30,7 +30,7 @@ export default function() {
       const interval = setInterval(() => {
         asyncFunc();
         dispatch(changeView("viewruns"));
-      }, 1000);
+      }, 10000);
       return () => clearInterval(interval);
     }, []);
   
