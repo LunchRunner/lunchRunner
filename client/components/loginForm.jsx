@@ -2,18 +2,18 @@ import { useDispatch, useSelector } from "react-redux"
 import { getUser } from "../redux/userSlice";
 import { useState, useEffect } from "react"
 import { useNavigate } from 'react-router-dom';
+import "../styles/loginForm.css"
+import { changeView } from "../redux/postSlice";
 
 export default function LoginForm() {
     const dispatch = useDispatch()
     const {isLoggedIn} = useSelector((state) => {
-        console.log(state.user)
         return state.user
     })
     const navigate = useNavigate()
     useEffect(() => {
-        console.log(isLoggedIn)
         if(isLoggedIn) {
-            navigate('/home')
+            navigate('/listview')
         }
     }, [isLoggedIn])
     const [form, setForm] = useState({
@@ -28,21 +28,29 @@ export default function LoginForm() {
     }
     const handleSubmit = async (e) => {
         e.preventDefault()
+        dispatch(changeView('viewruns'))
         dispatch(getUser(form))
     }
     return (
-        <div class="formbox">
-        <form onSubmit={handleSubmit}>
-            <label>
+        <div className="loginTextBoxes" >
+        <form className = "formBox"onSubmit={handleSubmit}>
+            <label className = "passUserLabel">
                 Username:
-                <input type="text" name="username" value = {form.username} onChange={onChange}></input>
             </label>
-            <label>
+             <input className = "inputText"type="text" name="username" value = {form.username} onChange={onChange}/>
+            <label className = "passUserLabel">
                 Password:
-                <input type="password" onChange={onChange} value = {form.password} name="password"></input>
             </label>
-            <input type="submit" value="Login"></input>
+            <input className = "inputText" type="password" onChange={onChange} value = {form.password} name="password"/>
+            {/* <input className = "inputText" type="submit" value="Login"></input> */}
+            <button className = "loginButton" type="submit" value="Login">Login</button>
+            
         </form>
+        {/* <button
+            onClick={(e) => {
+            // fetch('/oauth', {mode: 'no-cors'})}}
+            window.location.href='/oauth'}}
+            >Login With Github</button> */}
         </div>
     )
 }

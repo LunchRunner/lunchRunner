@@ -7,17 +7,11 @@ const timeStamps = {
 const postSchema = new mongoose.Schema(
   {
     placeId: String,
-    // placeId: {
-    //   type: mongoose.Schema.Types.ObjectId,
-    //   ref: "Place",
-    // },
-    // expirationTime: String,
-    expirationTime: Date,
+    expirationTime: {type: Date, expires: 5 },
     owner: String,
-    // owner: {
-    //   type: mongoose.Schema.Types.ObjectId,
-    //   ref: "User",
-    // },
+    runners: Array,
+    latitude: String,
+    longitude: String,
     tags: [
       {
         timeOfTag: {
@@ -33,7 +27,7 @@ const postSchema = new mongoose.Schema(
   },
   { timeStamps }
 );
-
+// postSchema.createIndex({expirationTime:1},{expireAfterSeconds:10})
 const Post = mongoose.model("Post", postSchema);
 
 module.exports = Post;

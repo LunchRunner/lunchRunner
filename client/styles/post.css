@@ -1,0 +1,84 @@
+.postTile{
+  width: 30%;
+  min-width: 300px;
+  margin: 1%;
+  min-height: 40%;
+  background-color: rgb(228, 191, 231);
+  border-color: rgb(213, 156, 239);
+  border-width: 10px;
+  border-radius: 1.5%;
+  border-style: solid;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  transition: all 0.3s ease-in-out;
+}
+
+.postTile:hover{
+  transform: scale(1.2) translateY(1.5em);
+  z-index: 5;
+  background-color: rgb(213, 156, 239);
+  border-color: rgb(164, 120, 185);
+}
+
+/* .image{
+  transition: all ease-in-out .2s;
+}
+
+.image:hover{
+  filter: brightness(.75);
+}
+
+.postTile:hover > h4{
+  visibility: visible;
+}
+
+.postTile > h4{
+  position:absolute;
+  visibility:hidden;
+} */
+
+p{
+  /* margin: 2%; */
+}
+.restaurantText{
+  font-family: Caveat;
+}
+.postInfoText{
+  font-family: Play;
+}
+.joinButton{
+  width: 50%;
+  height: 15%; 
+  /* margin: 2%; */
+}
+
+.postTile h1 {
+  margin: 0;
+}
+
+.postTile p {
+  margin: 0;
+}
+
+.timeInfo {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.joinerStyle{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* flex-wrap: wrap; */
+
+
+}
+
+.postOwnerText {
+  font-weight: bold;
+}

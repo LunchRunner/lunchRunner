@@ -1,0 +1,29 @@
+.addressList {
+ list-style-type: none;
+ font-family: Arial, Helvetica, sans-serif;
+ display: flex;
+ flex-direction: column;
+}
+
+.addressList:hover {
+  cursor: pointer;
+}
+
+.address {
+text-align: center;
+
+width: 100%;
+}
+
+.address:nth-child(even) {
+  background-color: white;
+}
+
+.address:nth-child(odd) {
+  background-color: lightblue;
+}
+
+input {
+  width: 100%;
+}
+

@@ -5,7 +5,7 @@ const initialState = {
     lastName: "",
     userId: "",
     status:"idle", 
-    isLoggedIn: false
+    isLoggedIn: false,
 }
 export const createNewUser = createAsyncThunk(
     'users/createNewUser', 
@@ -26,7 +26,6 @@ export const createNewUser = createAsyncThunk(
 export const getUser = createAsyncThunk(
   'users/getUser', 
   async (data) => {
-    console.log('hl')
     const response = await fetch("/users/Login", {
       method: "POST", // or 'PUT'
       headers: {
@@ -34,9 +33,9 @@ export const getUser = createAsyncThunk(
       },
       body: JSON.stringify(data),
     })
-    const json = await response.json()
-    console.log('json', json)
-    return json;
+    const username = await response.json();
+    console.log('username: ', username)
+    return username;
   }
 )
 const usersSlice = createSlice({
@@ -63,9 +62,14 @@ const usersSlice = createSlice({
       //   state.userId = action.payload.user.username
       // })
       .addCase(getUser.fulfilled, (state, action) => {
-        console.log(action)
-        state.isLoggedIn = true
-        state.username = action.payload
+        if (action.payload.err) {
+          state.status = 'failed'
+        } else {
+          state.status = 'succeeded'
+          state.isLoggedIn = true
+          state.username = action.payload
+        }
+        
         // if(action.payload.err) { 
         //     state.status = 'failed'
         //   }else {
